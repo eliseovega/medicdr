@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Médico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+        body {
+            
+            background-color: #DBEAFE;
+            font-family: "Questrial", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .sidebar {
+           
+            height: 100vh;
+            background-color: #00163B;
+            color: #fff;
+            position: fixed;
+        }
+        .sidebar a {
+            color: #adb5bd;
+        }
+        .sidebar a:hover {
+            color: #fff;
+        }
+        .sidebar .active {
+            background-color: #00ACBA;
+            color: #00163B;
+            
+        }
+        .main-content {
+            margin-left: 250px;
+        }
+        .card-header {
+            background-color: #00163B;
+            color: #FFF;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        .overview-card {
+            padding: 10px;
+            color: #fff;
+        }
+        .overview-card h5 {
+            font-size: 1.2rem;
+        }
+        .navbar {
+            margin-left: 250px;
+            background-color: #fff;
+        }
+        .navbar .navbar-brand {
+            color: #000F29;
+        }
+        .navbar .navbar-brand:hover {
+            color: #00163B;
+        }
+        .navbar .form-control {
+            background-color: #DBEAFE;
+            color: #fff;
+        }
+        .bg-one{
+            background-color: #6599FF;
+        }
+        .bg-two{
+            background-color: #48DAB3;
+        }
+        .bg-three{
+            background-color: #22B8F7;
+        }
+        .bg-four{
+            background-color: #8565FE;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar p-3">
+        <div class="text-center mb-4">
+            <h3>MedicDr</h3>
+            <img src="user.jpg" width="150px" alt="Logo" class="img-fluid rounded-circle mb-2">
+            <h4>Dra. Lia Velez</h4>
+            <small>Especialista en Medicina Interna</small>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="dashboard.html" id="overviewDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-home"></i> Resumen
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="overviewDropdown">
+                    <li><a class="dropdown-item" href="#">Tablero</a></li>
+                    <li><a class="dropdown-item" href="#">Cita</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Línea de tiempo</a></li>
+                    <li><a class="dropdown-item" href="#">Solicitudes</a></li>
+                    <li><a class="dropdown-item" href="#">Online y Offline</a></li>
+                    <li><a class="dropdown-item" href="#">Análisis</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="paymentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-dollar-sign"></i>   Profesional
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="paymentsDropdown">
+                    <li><a class="dropdown-item" href="personal.html">Registrar nuevo</a></li>
+                    <li><a class="dropdown-item" href="#">Médico</a></li>
+                    <li><a class="dropdown-item" href="#">Asistencial</a></li>
+                    <li><a class="dropdown-item" href="#">Administrativo</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="patientsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-injured"></i> Mis Pacientes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="patientsDropdown">
+                    <li><a class="dropdown-item" href="paciente.html">Nuevo Paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Historial de pacientes</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de pacientes</a></li>
+                    <li><a class="dropdown-item" href="medicamentos.html">Receta Medica</a></li>
+                    <li><a class="dropdown-item" href="Orden-Medica.html">Orden Medica</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="appointmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-calendar-check"></i>Programar Cita
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="appointmentDropdown">
+                    <li><a class="dropdown-item" href="cita-medica.html">Nueva Cita</a></li>
+                    <li><a class="dropdown-item" href="#">Selección de fecha</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Solicitud de cita</a></li>
+                    <li><a class="dropdown-item" href="#">Paciente reciente</a></li>
+                    <li><a class="dropdown-item" href="#">Línea de tiempo de citas</a></li>
+                </ul>
+            </li>
+            
+       
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-envelope"></i> Mensajes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="messagesDropdown">
+                    <li><a class="dropdown-item" href="#">Detalles del paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Historial de mensajes</a></li>
+                    <li><a class="dropdown-item" href="#">Notificación</a></li>
+                    <li><a class="dropdown-item" href="#">Generar reporte</a></li>
+                    <li><a class="dropdown-item" href="#">Video y llamada de audio</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="logoutDropdown">
+                    <li><a class="dropdown-item" href="#">MedicDr</a></li>
+                    <!-- Añade más opciones de cierre de sesión aquí -->
+                </ul>
+            </li>
+        </ul> 
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MedicDr</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                <ul class="navbar-nav ms-auto">
+                    <form class="d-flex ms-3">
+                        <input class="form-control me-2" type="search" placeholder="Buscar.." aria-label="Search">
+                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content p-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Información General</h1>
+            <input type="date" class="form-control w-auto" placeholder="20 de Junio 2024">
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card card-custom border-0">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><i class="fas fa-user-injured"></i> Pacientes</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Detalles de pacientes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card card-custom border-0">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><i class="fas fa-user-md"></i> Médicos</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Información de médicos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card card-custom border-0">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><i class="fas fa-file-medical"></i> Historias Clínicas</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Detalles de historias clínicas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card card-custom border-0">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><i class="fas fa-user-nurse"></i> Especialistas</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Listado de especialistas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Cards for Appointments, Online Consultancy, etc. -->
+            <div class="col-md-3">
+                <div class="card bg-one text-white overview-card border-0">
+                    <div class="card-body">
+                        <h1 class="text-white text-center"><i class="fa-solid fa-file-waveform"></i> <span class="h1"> 48</span></h1>
+                        <h5 class="text-center">Citas Medicas</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-two text-white overview-card border-0">
+                    <div class="card-body">
+                        <h1 class="text-white text-center"><i class="fa-solid fa-laptop-medical"></i> <span class="h1"> 18</span></h1>
+                        <h5 class="text-center">Citas en Linea</h5> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-four text-white overview-card border-0">
+                    <div class="card-body">
+                        <h1 class="text-white text-center"><i class="fa-solid fa-rotate"></i> <span class="h1"> 50</span></h1>
+                        <h5 class="text-center">Citas en Proceso</h5>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-three text-white overview-card border-0">
+                    <div class="card-body">
+                        <h1 class="text-white text-center"><i class="fa-solid fa-comment-medical"></i> <span class="h1"> 32</span></h1>
+                        <h5 class="text-center">Solicitudes</h5>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Appointments and Patient Details -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Cita de Hoy 
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Andrea Gomez - Chequeo Medico <span class="badge bg-success">En Curso</span></li>
+                            <li class="list-group-item">Mauricio Betancur -Resfriado Común <span class="badge bg-primary">12:30 PM</span></li>
+                            <li class="list-group-item">Camilo Espinoza - Ingreso por Urgencia <span class="badge bg-danger">En Curso</span></li>
+                            <li class="list-group-item">Maria Cervantes -Dolor Punzante <span class="badge bg-primary">09:45 AM</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Detalles del Paciente
+                    </div>
+                    <div class="card-body">
+                        <h5>Mauricio Betancur</h5>
+                        <p><span class="badge bg-success">Resfriado Común</span></p>
+                        <p><strong>Sintomas:</strong> Congestión, Tos, Fiebre, Estornudo..</p>
+                        <p><strong>Ultima Orden Medica:</strong> Acetaminifen, Vitamina C, ...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Timeline -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Cronograma de Citas
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">11:30 AM - Consulta Clinica</li>
+                        <li class="list-group-item">02:30 PM - Consulta en linea</li>
+                        <li class="list-group-item">05:30 PM - Reunion - Dr. Pizarro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Médico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+        body {
+            
+            background-color: #DBEAFE;
+            font-family: "Questrial", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .sidebar {
+           
+            height: 100vh;
+            background-color: #00163B;
+            color: #fff;
+            position: fixed;
+        }
+        .sidebar a {
+            color: #adb5bd;
+        }
+        .sidebar a:hover {
+            color: #fff;
+        }
+        .sidebar .active {
+            background-color: #00ACBA;
+            color: #00163B;
+            
+        }
+        .main-content {
+            margin-left: 250px;
+        }
+        .card-header {
+            background-color: #00163B;
+            color: #FFF;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        .overview-card {
+            padding: 10px;
+            color: #fff;
+        }
+        .overview-card h5 {
+            font-size: 1.2rem;
+        }
+        .navbar {
+            margin-left: 250px;
+            background-color: #fff;
+        }
+        .navbar .navbar-brand {
+            color: #000F29;
+        }
+        .navbar .navbar-brand:hover {
+            color: #00163B;
+        }
+        .navbar .form-control {
+            background-color: #DBEAFE;
+            color: #fff;
+        }
+        .bg-one{
+            background-color: #6599FF;
+        }
+        .bg-two{
+            background-color: #48DAB3;
+        }
+        .bg-three{
+            background-color: #22B8F7;
+        }
+        .bg-four{
+            background-color: #8565FE;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar p-3">
+        <div class="text-center mb-4">
+            <h3>MedicDr</h3>
+            <img src="user.jpg" width="150px" alt="Logo" class="img-fluid rounded-circle mb-2">
+            <h4>Dra. Lia Velez</h4>
+            <small>Especialista en Medicina Interna</small>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="dashboard.html" id="overviewDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-home"></i> Resumen
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="overviewDropdown">
+                    <li><a class="dropdown-item" href="dashboard.html">Tablero</a></li>
+                    <li><a class="dropdown-item" href="#">Cita</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Línea de tiempo</a></li>
+                    <li><a class="dropdown-item" href="#">Solicitudes</a></li>
+                    <li><a class="dropdown-item" href="#">Online y Offline</a></li>
+                    <li><a class="dropdown-item" href="#">Análisis</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="paymentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-dollar-sign"></i>   Profesional
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="paymentsDropdown">
+                    <li><a class="dropdown-item" href="personal.html">Registrar nuevo</a></li>
+                    <li><a class="dropdown-item" href="#">Médico</a></li>
+                    <li><a class="dropdown-item" href="#">Asistencial</a></li>
+                    <li><a class="dropdown-item" href="#">Administrativo</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="patientsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-injured"></i> Mis Pacientes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="patientsDropdown">
+                    <li><a class="dropdown-item" href="paciente.html">Nuevo Paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Historial de pacientes</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de pacientes</a></li>
+                    <li><a class="dropdown-item" href="medicamentos.html">Receta Medica</a></li>
+                    <li><a class="dropdown-item" href="Orden-Medica.html">Orden Medica</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="appointmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-calendar-check"></i>Programar Cita
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="appointmentDropdown">
+                    <li><a class="dropdown-item" href="cita-medica.html">Nueva Cita</a></li>
+                    <li><a class="dropdown-item" href="#">Selección de fecha</a></li>
+                    <li><a class="dropdown-item" href="#">Detalles de paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Solicitud de cita</a></li>
+                    <li><a class="dropdown-item" href="#">Paciente reciente</a></li>
+                    <li><a class="dropdown-item" href="#">Línea de tiempo de citas</a></li>
+                </ul>
+            </li>
+            
+       
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-envelope"></i> Mensajes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="messagesDropdown">
+                    <li><a class="dropdown-item" href="#">Detalles del paciente</a></li>
+                    <li><a class="dropdown-item" href="#">Historial de mensajes</a></li>
+                    <li><a class="dropdown-item" href="#">Notificación</a></li>
+                    <li><a class="dropdown-item" href="#">Generar reporte</a></li>
+                    <li><a class="dropdown-item" href="#">Video y llamada de audio</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="logoutDropdown">
+                    <li><a class="dropdown-item" href="#">MedicDr</a></li>
+                    <!-- Añade más opciones de cierre de sesión aquí -->
+                </ul>
+            </li>
+        </ul> 
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MedicDr</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                <ul class="navbar-nav ms-auto">
+                    <form class="d-flex ms-3">
+                        <input class="form-control me-2" type="search" placeholder="Buscar.." aria-label="Search">
+                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content p-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Nuevo Personal Medico</h1>
+            <input type="date" class="form-control w-auto" placeholder="20 de Junio 2024">
+        </div>
+        <div class="card card-custom border-0 p-3">
+          <form>
+            <!-- Nombres -->
+            <div class="row mb-3">
+              <div class="col">
+                <label for="primer-nombre" class="form-label">Primer nombre*</label>
+                <input type="text" class="form-control" id="primer-nombre" placeholder="Primer nombre" required>
+              </div>
+              <div class="col">
+                <label for="segundo-nombre" class="form-label">Segundo nombre</label>
+                <input type="text" class="form-control" id="segundo-nombre" placeholder="Segundo nombre">
+              </div>
+            </div>
+    
+            <!-- Apellidos -->
+            <div class="row mb-3">
+              <div class="col">
+                <label for="primer-apellido" class="form-label">Primer apellido*</label>
+                <input type="text" class="form-control" id="primer-apellido" placeholder="Primer apellido" required>
+              </div>
+              <div class="col">
+                <label for="segundo-apellido" class="form-label">Segundo apellido</label>
+                <input type="text" class="form-control" id="segundo-apellido" placeholder="Segundo apellido">
+              </div>
+            </div>
+    
+            <!-- Documentos -->
+            <div class="mb-3">
+              <label for="tipo-documento" class="form-label">Tipo de documento*</label>
+              <select class="form-select" id="tipo-documento" required>
+                <option selected disabled>- Seleccionar -</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+                <option value="PA">Pasaporte</option>
+              </select>
+            </div>
+    
+            <div class="mb-3">
+              <label for="numero-documento" class="form-label">No. de Documento*</label>
+              <input type="text" class="form-control" id="numero-documento" placeholder="Número de Documento" required>
+            </div>
+    
+            <div class="mb-3">
+              <label for="numero-registro-medico" class="form-label">Número de Registro Médico</label>
+              <input type="text" class="form-control" id="numero-registro-medico" placeholder="Número de Registro Médico" required>
+            </div>
+    
+            <!-- Especialidad -->
+            <div class="mb-3">
+              <label for="especialidad" class="form-label">Especialidad*</label>
+              <select class="form-select" id="especialidad" required>
+                <option selected disabled>- Seleccionar -</option>
+                <option value="Medicina General">Medicina General</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Dermatología">Dermatología</option>
+                <option value="Ginecología">Ginecología</option>
+                <option value="Pediatría">Pediatría</option>
+                <option value="Psiquiatría">Psiquiatría</option>
+                <option value="Oftalmología">Oftalmología</option>
+                <option value="Neurología">Neurología</option>
+                <option value="Traumatología">Traumatología</option>
+                <!-- Agregar más especialidades según sea necesario -->
+              </select>
+            </div>
+    
+            <!-- Residencia -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="departamento" class="form-label">Departamento donde reside*</label>
+                <select class="form-select" id="departamento" required>
+                  <option selected disabled>- Seleccionar -</option>
+                  <option value="Antioquia">Antioquia</option>
+                  <option value="Bogotá">Bogotá</option>
+                  <option value="Cundinamarca">Cundinamarca</option>
+                  <!-- Agregar más opciones según sea necesario -->
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="ciudad" class="form-label">Ciudad donde reside*</label>
+                <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" required>
+              </div>
+            </div>
+    
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Dirección donde reside*</label>
+              <input type="text" class="form-control" id="direccion" placeholder="Dirección" required>
+            </div>
+    
+            <!-- Teléfonos -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" placeholder="Teléfono">
+              </div>
+              <div class="col-md-6">
+                <label for="celular" class="form-label">Celular*</label>
+                <input type="tel" class="form-control" id="celular" placeholder="Celular" required>
+              </div>
+            </div>
+    
+            <!-- Correos Electrónicos -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico*</label>
+              <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmar-email" class="form-label">Confirmar Correo Electrónico*</label>
+              <input type="email" class="form-control" id="confirmar-email" placeholder="confirmar correo@ejemplo.com" required>
+            </div>
+    
+            <!-- Sexo -->
+            <div class="mb-3">
+              <label for="sexo" class="form-label">Sexo*</label>
+              <select class="form-select" id="sexo" required>
+                <option selected disabled>- Seleccionar -</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+    
+            <!-- Grupo Sanguíneo -->
+            <div class="mb-3">
+              <label for="grupo-sanguineo" class="form-label">Grupo Sanguíneo*</label>
+              <select class="form-select" id="grupo-sanguineo" required>
+                <option selected disabled>- Seleccionar -</option>
+                <option value="A+">A+</option>            
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+    
+            <!-- Adjuntar documento de identidad -->
+            <div class="mb-3">
+              <label for="documento-identidad" class="form-label">Adjuntar documento de identidad*</label>
+              <input class="form-control" type="file" id="documento-identidad" accept=".txt,.rtf,.pdf,.doc,.docx,.odt,.ppt,.pptx,.odp,.xls,.xlsx,.ods,.jpg" required>
+              <div class="form-text">Máximo 1 fichero, límite de 25 MB, tipos permitidos: txt, rtf, pdf, doc, docx, odt, ppt, pptx, odp, xls, xlsx, ods, jpg.</div>
+            </div>
+    
+            <!-- Autorización de tratamientos de datos -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="autorizacion-datos" required>
+              <label class="form-check-label" for="autorizacion-datos">Acepto el tratamiento y la Política de Protección de Datos Personales Servicios</label>
+            </div>
+    
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
+
+
+
