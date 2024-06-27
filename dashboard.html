@@ -10,18 +10,21 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
         body {
-            
             background-color: #DBEAFE;
             font-family: "Questrial", sans-serif;
             font-weight: 400;
             font-style: normal;
         }
         .sidebar {
-           
             height: 100vh;
             background-color: #00163B;
             color: #fff;
             position: fixed;
+            width: 250px;
+            top: 0;
+            left: 0;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000; /* Asegura que el sidebar esté siempre por encima */
         }
         .sidebar a {
             color: #adb5bd;
@@ -32,10 +35,10 @@
         .sidebar .active {
             background-color: #00ACBA;
             color: #00163B;
-            
         }
         .main-content {
             margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
         }
         .card-header {
             background-color: #00163B;
@@ -58,6 +61,7 @@
         .navbar {
             margin-left: 250px;
             background-color: #fff;
+            transition: margin-left 0.3s ease-in-out;
         }
         .navbar .navbar-brand {
             color: #000F29;
@@ -69,23 +73,61 @@
             background-color: #DBEAFE;
             color: #fff;
         }
-        .bg-one{
+        .bg-cero{
+            background-color: #00163B;
+        }
+        .bg-one {
             background-color: #6599FF;
         }
-        .bg-two{
+        .bg-two {
             background-color: #48DAB3;
         }
-        .bg-three{
+        .bg-three {
             background-color: #22B8F7;
         }
-        .bg-four{
+        .bg-four {
             background-color: #8565FE;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .main-content, .navbar {
+                margin-left: 0;
+            }
+            .navbar {
+                margin-right: 0;
+            }
+        }
+        .profile-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .crud-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 0 5px;
+            
+        }
+        .crud-icons i:hover {
+            color: #000;
+        }
+        ul{
+            li{
+                list-style: none;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Sidebar -->
-    <div class="sidebar p-3">
+    <div class="sidebar p-3" id="sidebar">
         <div class="text-center mb-4">
             <h3>MedicDr</h3>
             <img src="user.jpg" width="150px" alt="Logo" class="img-fluid rounded-circle mb-2">
@@ -109,7 +151,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="paymentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-dollar-sign"></i>   Profesional
+                    <i class="fas fa-dollar-sign"></i> Profesional
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="paymentsDropdown">
                     <li><a class="dropdown-item" href="personal.html">Registrar nuevo</a></li>
@@ -132,7 +174,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appointmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-calendar-check"></i>Programar Cita
+                    <i class="fas fa-calendar-check"></i> Programar Cita
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="appointmentDropdown">
                     <li><a class="dropdown-item" href="cita-medica.html">Nueva Cita</a></li>
@@ -143,8 +185,6 @@
                     <li><a class="dropdown-item" href="#">Línea de tiempo de citas</a></li>
                 </ul>
             </li>
-            
-       
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-envelope"></i> Mensajes
@@ -157,183 +197,176 @@
                     <li><a class="dropdown-item" href="#">Video y llamada de audio</a></li>
                 </ul>
             </li>
-            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="logoutDropdown">
-                    <li><a class="dropdown-item" href="index.html">MedicDr</a></li>
-                    <!-- Añade más opciones de cierre de sesión aquí -->
+                    <li><a class="dropdown-item" href="#">MedicDr</a></li>
                 </ul>
             </li>
         </ul> 
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MedicDr</a>
+            <a class="navbar-brand" href="#">Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                
                 <ul class="navbar-nav ms-auto">
-                    <form class="d-flex ms-3">
-                        <input class="form-control me-2" type="search" placeholder="Buscar.." aria-label="Search">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-info" type="submit">Buscar</button>
                     </form>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
-                    </li>
                 </ul>
-                
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="main-content p-3">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Información General</h1>
-            <input type="date" class="form-control w-auto" placeholder="20 de Junio 2024">
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-3 mb-3">
-                <div class="card card-custom border-0">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><i class="fas fa-user-injured"></i> Pacientes</h5>
+    <div class="main-content p-4">
+        <div class="container-fluid">
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-one overview-card border-0">
+                        <div class="card-body text-center">
+                            <div ><img src="img/icon-1.svg" alt="" width="64px"></div>
+                            <h5>Citas de Hoy</h5>
+                            <h1>3</h1>
+                        </div>
                     </div>
-                    <div class="card-body text-center">
-                        <p class="card-text">Detalles de pacientes</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-two overview-card border-0">
+                        <div class="card-body text-center">
+                            <div ><img src="img/icon-2.svg" alt="" width="64px"></div>
+                            <h5>Recetas</h5>
+                            <h1>12</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-three overview-card border-0">
+                        <div class="card-body text-center">
+                            <div ><img src="img/icon-3.svg" alt="" width="64px"></div>
+                            <h5>Pacientes</h5>
+                            <h1>6</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-four overview-card border-0">
+                        <div class="card-body text-center">
+                            <div ><img src="img/icon-4.svg" alt="" width="64px"></div>
+                            <h5>Activos</h5>
+                            <h1>3</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 mb-3">
-                <div class="card card-custom border-0">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><i class="fas fa-user-md"></i> Médicos</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <p class="card-text">Información de médicos</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb-3">
-                <div class="card card-custom border-0">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><i class="fas fa-file-medical"></i> Historias Clínicas</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <p class="card-text">Detalles de historias clínicas</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 mb-3">
-                <div class="card card-custom border-0">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><i class="fas fa-user-nurse"></i> Especialistas</h5>
-                    </div>
-                    <div class="card-body text-center">
-                        <p class="card-text">Listado de especialistas</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Cards for Appointments, Online Consultancy, etc. -->
-            <div class="col-md-3">
-                <div class="card bg-one text-white overview-card border-0">
-                    <div class="card-body">
-                        <h1 class="text-white text-center"><i class="fa-solid fa-file-waveform"></i> <span class="h1"> 48</span></h1>
-                        <h5 class="text-center">Citas Medicas</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-two text-white overview-card border-0">
-                    <div class="card-body">
-                        <h1 class="text-white text-center"><i class="fa-solid fa-laptop-medical"></i> <span class="h1"> 18</span></h1>
-                        <h5 class="text-center">Citas en Linea</h5> 
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-four text-white overview-card border-0">
-                    <div class="card-body">
-                        <h1 class="text-white text-center"><i class="fa-solid fa-rotate"></i> <span class="h1"> 50</span></h1>
-                        <h5 class="text-center">Citas en Proceso</h5>  
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-three text-white overview-card border-0">
-                    <div class="card-body">
-                        <h1 class="text-white text-center"><i class="fa-solid fa-comment-medical"></i> <span class="h1"> 32</span></h1>
-                        <h5 class="text-center">Solicitudes</h5>  
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Today's Appointments and Patient Details -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Cita de Hoy 
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Andrea Gomez - Chequeo Medico <span class="badge bg-success">En Curso</span></li>
-                            <li class="list-group-item">Mauricio Betancur -Resfriado Común <span class="badge bg-primary">12:30 PM</span></li>
-                            <li class="list-group-item">Camilo Espinoza - Ingreso por Urgencia <span class="badge bg-danger">En Curso</span></li>
-                            <li class="list-group-item">Maria Cervantes -Dolor Punzante <span class="badge bg-primary">09:45 AM</span></li>
-                        </ul>
+            <!-- Additional Cards -->
+            <div class="row mt-4">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card">
+                        
+                        <div class="card-body text-center">
+                            <div class="">
+                                <a href="cita-medica.html"><img src="img/custom-17.svg" alt="" width="140px"></a>
+                            </div>
+                            <h3 class="text-primary">La mejor atencion aqui </h3>
+                            <a href="cita-medica.html" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"><p class="text-primary">Hacer una cita</p></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Detalles del Paciente
-                    </div>
-                    <div class="card-body">
-                        <h5>Mauricio Betancur</h5>
-                        <p><span class="badge bg-success">Resfriado Común</span></p>
-                        <p><strong>Sintomas:</strong> Congestión, Tos, Fiebre, Estornudo..</p>
-                        <p><strong>Ultima Orden Medica:</strong> Acetaminifen, Vitamina C, ...</p>
+                <div class="col-md-6 col-lg-6">
+                    <div class="card border-0">
+                        <div class="card-header">Mensajes recientes</div>
+                        <div class="card-body">
+                            <ul>
+                                <li class="mb-3"><img src="img/perfil/profile.jpg" alt="Juan Pérez" class="profile-img">Juan Pérez: Resultados Orden <span class="badge rounded-pill bg-one ">No Leido</span> </li>
+                                <li class="mb-3"><img src="img/perfil/profile2.jpg" alt="Mario García" class="profile-img">Mario García: Receta Medica  <span class="badge rounded-pill bg-two">Leido Hoy</span></li>
+                                <li class="mb-3"><img src="img/perfil/profile3.jpg" alt="Carlos López" class="profile-img">Carlos López: Solicitud de cita  <span class="badge rounded-pill bg-three">Destacado</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                
             </div>
-        </div>
 
-        <!-- Appointment Timeline -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        Cronograma de Citas
+            <!-- Today's Appointments Table -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card border-0">
+                        <div class="card-header">Pacientes con citas hoy</div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Paciente</th>
+                                        <th>Hora de la Cita</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="img/perfil/profile.jpg" alt="Juan Pérez" class="profile-img">
+                                            Juan Pérez
+                                        </td>
+                                        <td>10:00 AM</td>
+                                        <td class="crud-icons">
+                                            
+                                            <i class="fas fa-edit text-info"></i>
+                                            <i class="fas fa-trash text-danger"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="img/perfil/profile2.jpg" alt="Mario García" class="profile-img">
+                                            María García
+                                        </td>
+                                        <td>11:00 AM</td>
+                                        <td class="crud-icons">
+                                           
+                                            <i class="fas fa-edit text-info"></i>
+                                            <i class="fas fa-trash text-danger"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="img/perfil/profile3.jpg" alt="Carlos López" class="profile-img">
+                                            Carlos López
+                                        </td>
+                                        <td>01:00 PM</td>
+                                        <td class="crud-icons">
+                                            <i class="fas fa-edit text-info"></i>
+                                            <i class="fas fa-trash text-danger"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">11:30 AM - Consulta Clinica</li>
-                        <li class="list-group-item">02:30 PM - Consulta en linea</li>
-                        <li class="list-group-item">05:30 PM - Reunion - Dr. Pizarro</li>
-                    </ul>
                 </div>
             </div>
+
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('show');
-        }
+        $(document).ready(function(){
+            $(".navbar-toggler").click(function(){
+                $("#sidebar").toggleClass("show");
+            });
+        });
     </script>
 </body>
 </html>
